@@ -1,3 +1,5 @@
+from operations import *
+
 operation = input('''
 Please type in the math operation you would like to complete:
 + for addition
@@ -5,27 +7,6 @@ Please type in the math operation you would like to complete:
 * for multiplication
 / for division
 ''')
-
-   
-def addition(number_1, number_2):
-    # return number_1 + number_2
-    print('{} + {} = '.format(number_1, number_2))
-    print(number_1 + number_2)
-
-def subtraction(number_1, number_2):
-    # return number_1 - number_2
-    print('{} - {} = '.format(number_1, number_2))
-    print(number_1 - number_2)
-    
-def multiplication(number_1, number_2):
-    # return number_1 * number_2
-    print('{} * {} = '.format(number_1, number_2))
-    print(number_1 * number_2)
-
-def division(number_1, number_2):
-    # return number_1 / number_2
-    print('{} / {} = '.format(number_1, number_2))
-    print(number_1 / number_2)
     
 try:
     number_1 = int(input('Enter your first number: '))
