@@ -12,11 +12,13 @@ try:
     number_1 = int(input('Enter your first number: '))
 except ValueError:
     print("Invalid number")
+    number_1 = 0
     
 try:
     number_2 = int(input('Enter your second number: '))
 except ValueError:
     print("Invalid number")
+    number_2 = 1
 
 if operation == '+':
     addition(number_1, number_2)
