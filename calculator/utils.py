@@ -1,5 +1,12 @@
 from operations import *
 
+operations = {'+': 'addition',
+              '-': 'subtraction',
+              '*': 'multiplication',
+              '/': 'division',
+              '**': 'power',
+              '%': 'modulo'}
+
 
 def welcome():
     print('''
@@ -8,14 +15,13 @@ def welcome():
 
 
 def enter_valid_operation_input():
-    operations = ['+', '-', '*', '/']
-    operation = input('''
-    Please type in the math operation you would like to complete:
-    + for addition
-    - for subtraction
-    * for multiplication
-    / for division
-    ''')
+    # Constructing the prompt string
+    prompt = "Please type in the math operation you would like to complete:\n"
+
+    for symbol, operation in operations.items():
+        prompt += f"    {symbol} for {operation}\n"
+
+    operation = input(prompt)
     if operation in operations:
         return operation
     else:
@@ -25,9 +31,13 @@ def enter_valid_operation_input():
 
 def enter_valid_number_input(string_word):
     try:
-        return int(input(string_word))
+        value = input(string_word)
+        if '.' in value:
+            return float(value)
+        else:
+            return int(value)
     except ValueError:
-        print('Invalid number')
+        print('Invalid number. Please try again.')
         return enter_valid_number_input(string_word)
 
 
@@ -39,4 +49,14 @@ def perform_operation(operation, number_1, number_2):
     elif operation == '*':
         multiplication(number_1, number_2)
     elif operation == '/':
-        division(number_1, number_2)
+        try:
+            division(number_1, number_2)
+        except ZeroDivisionError:
+            print("Division by zero")
+    elif operation == '**':
+        power(number_1, number_2)
+    elif operation == '%':
+        try:
+            modulus(number_1, number_2)
+        except ZeroDivisionError:
+            print("Modulo by zero")
