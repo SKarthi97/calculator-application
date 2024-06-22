@@ -4,27 +4,31 @@ from utils import *
 # Define calculate function
 def calculate():
     operation = enter_valid_operation_input()
-    number_1 = enter_valid_number_input('Enter your first number: ')
-    number_2 = enter_valid_number_input('Enter your second number: ')
-
-    # Add a perform operation function to calculate the output
-    perform_operation(operation, number_1, number_2)
-    
+    print(operation)
     # Add repeat function to calculate() function
     repeat_again()
 
 
 # Define a repeat_again function to call the calculate function repeatedly
 def repeat_again():
-    # Take input from user
-    repeat_calculator = input('''
-    Do you want to calculate again?
-    Please type Y for YES or N for NO.
-    ''')
+    while True:
+        # Take input from user
+        repeat_calculator = input('''
+        Do you want to calculate again?
+        Please type Y for YES or N for NO.
+        ''').strip().upper()
+        
+        if repeat_calculator == 'Y':
+            calculate()
+        elif repeat_calculator == 'N':
+            print('Exiting calculator. Goodbye!')
+            break
+        else:
+            print("Invalid input. Please enter Y or N.")
+
+
+if __name__ == '__main__':
+    welcome()
+    # Call the calculate function
+    calculate()
     
-    if repeat_calculator.upper() == 'Y':
-        calculate()
-    elif repeat_calculator.upper() == 'N':
-        print('See you later!')
-    else:
-        repeat_again()
