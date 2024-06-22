@@ -7,3 +7,5 @@ A simple command-line calculator program in **Python 3**. This calculator will b
 4. **Division**
 5. **Power**
 6. **Modulo**
+7. **absolute**
+8. **inverse**
