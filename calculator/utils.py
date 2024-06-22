@@ -15,10 +15,10 @@ def welcome():
 def enter_valid_operation_input():
     # Constructing the prompt string
     prompt = "Please type in the math operation you would like to complete:\n"
-    
+
     for symbol, operation in operations.items():
         prompt += f"    {symbol} for {operation}\n"
-        
+
     operation = input(prompt)
     if operation in operations:
         return operation
@@ -43,4 +43,8 @@ def perform_operation(operation, number_1, number_2):
     elif operation == '*':
         multiplication(number_1, number_2)
     elif operation == '/':
-        division(number_1, number_2)
+        try:
+            division(number_1, number_2)
+        except ZeroDivisionError:
+            print("Division by zero")
+
