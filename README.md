@@ -9,3 +9,6 @@ A simple command-line calculator program in **Python 3**. This calculator will b
 6. **Modulo**
 7. **absolute**
 8. **inverse**
+9. **factorial**
+10. **exponential**
+11. **log_base_e**

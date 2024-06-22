@@ -8,7 +8,10 @@ operations = {'+': addition,
               '**': power,
               '%': modulus,
               'abs': absolute,
-              'inv': inverse}
+              'inv': inverse,
+              'n!': factorial,
+              'exp': exponential,
+              'ln': log_base_e}
 
 
 def welcome():
@@ -27,22 +30,19 @@ def enter_valid_operation_input():
     operation = input(prompt)
     
     if operation in operations:
-        if operation == 'abs':
-            number = enter_valid_number_input("Enter your number: ")
-            return operations[operation](number)
-        elif operation == 'inv':
-            try:
+        try:
+            if operation in ['abs', 'inv', 'n!', 'exp', 'ln']:
                 number = enter_valid_number_input("Enter your number: ")
-                return operations[operation](number)
-            except ZeroDivisionError as e:
-                return f"Error: {e}"
-        else:
-            try:
+                result = operations[operation](number)
+            else:
                 number_1 = enter_valid_number_input('Enter your first number: ')
                 number_2 = enter_valid_number_input('Enter your second number: ')
-                return operations[operation](number_1, number_2)
-            except ZeroDivisionError:
-                return f"Error: {operations[operation].__name__} by zero"
+                result = operations[operation](number_1, number_2)
+            return result
+        except ZeroDivisionError:
+            return "Error: denominator is zero"
+        except ValueError as e:
+                return f"Error: {e}"
     else:
         return f"Error: {operation} is not a valid operation"
 
