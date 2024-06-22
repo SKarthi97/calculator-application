@@ -1,5 +1,10 @@
 from operations import *
 
+operations = {'+': 'addition',
+              '-': 'subtraction',
+              '*': 'multiplication',
+              '/': 'division'}
+
 
 def welcome():
     print('''
@@ -8,14 +13,13 @@ def welcome():
 
 
 def enter_valid_operation_input():
-    operations = ['+', '-', '*', '/']
-    operation = input('''
-    Please type in the math operation you would like to complete:
-    + for addition
-    - for subtraction
-    * for multiplication
-    / for division
-    ''')
+    # Constructing the prompt string
+    prompt = "Please type in the math operation you would like to complete:\n"
+    
+    for symbol, operation in operations.items():
+        prompt += f"    {symbol} for {operation}\n"
+        
+    operation = input(prompt)
     if operation in operations:
         return operation
     else:
