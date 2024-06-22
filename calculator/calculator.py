@@ -3,8 +3,8 @@ from utils import *
         
 # Define calculate function
 def calculate():
-    operation = enter_valid_operation_input()
-    print(operation)
+    result = enter_valid_operation_input()
+    print(result)
     # Add repeat function to calculate() function
     repeat_again()
 
