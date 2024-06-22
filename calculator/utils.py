@@ -47,13 +47,14 @@ def enter_valid_operation_input():
         return f"Error: {operation} is not a valid operation"
 
 
-def enter_valid_number_input(string_word):
-    try:
-        value = input(string_word)
-        if '.' in value:
-            return float(value)
-        else:
-            return int(value)
-    except ValueError:
-        print('Invalid number. Please try again.')
-        return enter_valid_number_input(string_word)
+def enter_valid_number_input(prompt):
+    while True:
+        value = input(prompt)
+        try:
+            if '.' in value:
+                return float(value)
+            else:
+                return int(value)
+        except ValueError:
+            print('Invalid number. Please enter a valid integer or float.')
+            
