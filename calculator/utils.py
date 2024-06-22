@@ -1,11 +1,14 @@
 from operations import *
 
-operations = {'+': 'addition',
-              '-': 'subtraction',
-              '*': 'multiplication',
-              '/': 'division',
-              '**': 'power',
-              '%': 'modulo'}
+
+operations = {'+': addition,
+              '-': subtraction,
+              '*': multiplication,
+              '/': division,
+              '**': power,
+              '%': modulus,
+              'abs': absolute,
+              'inv': inverse}
 
 
 def welcome():
@@ -17,46 +20,41 @@ def welcome():
 def enter_valid_operation_input():
     # Constructing the prompt string
     prompt = "Please type in the math operation you would like to complete:\n"
-
+    
     for symbol, operation in operations.items():
-        prompt += f"    {symbol} for {operation}\n"
+        prompt += f"    {symbol} for {operation.__name__}\n"
 
     operation = input(prompt)
+    
     if operation in operations:
-        return operation
-    else:
-        print('You have not typed a valid operator, please run the program again.')
-        return enter_valid_operation_input()
-
-
-def enter_valid_number_input(string_word):
-    try:
-        value = input(string_word)
-        if '.' in value:
-            return float(value)
+        if operation == 'abs':
+            number = enter_valid_number_input("Enter your number: ")
+            return operations[operation](number)
+        elif operation == 'inv':
+            try:
+                number = enter_valid_number_input("Enter your number: ")
+                return operations[operation](number)
+            except ZeroDivisionError as e:
+                return f"Error: {e}"
         else:
-            return int(value)
-    except ValueError:
-        print('Invalid number. Please try again.')
-        return enter_valid_number_input(string_word)
+            try:
+                number_1 = enter_valid_number_input('Enter your first number: ')
+                number_2 = enter_valid_number_input('Enter your second number: ')
+                return operations[operation](number_1, number_2)
+            except ZeroDivisionError:
+                return f"Error: {operations[operation].__name__} by zero"
+    else:
+        return f"Error: {operation} is not a valid operation"
 
 
-def perform_operation(operation, number_1, number_2):
-    if operation == '+':
-        addition(number_1, number_2)
-    elif operation == '-':
-        subtraction(number_1, number_2)
-    elif operation == '*':
-        multiplication(number_1, number_2)
-    elif operation == '/':
+def enter_valid_number_input(prompt):
+    while True:
+        value = input(prompt)
         try:
-            division(number_1, number_2)
-        except ZeroDivisionError:
-            print("Division by zero")
-    elif operation == '**':
-        power(number_1, number_2)
-    elif operation == '%':
-        try:
-            modulus(number_1, number_2)
-        except ZeroDivisionError:
-            print("Modulo by zero")
+            if '.' in value:
+                return float(value)
+            else:
+                return int(value)
+        except ValueError:
+            print('Invalid number. Please enter a valid integer or float.')
+            
