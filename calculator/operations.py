@@ -34,6 +34,6 @@ def absolute(number):
 
 def inverse(number):
     try:
-        return 1 % number
+        return 1 / number
     except ZeroDivisionError:
         return "Error: division by zero"

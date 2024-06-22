@@ -4,3 +4,7 @@ def calculate():
 
 def welcome():
     return None
+
+
+def repeat_again():
+    return None
