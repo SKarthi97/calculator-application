@@ -3,7 +3,9 @@ from operations import *
 operations = {'+': 'addition',
               '-': 'subtraction',
               '*': 'multiplication',
-              '/': 'division'}
+              '/': 'division',
+              '**': 'power',
+              '%': 'modulo'}
 
 
 def welcome():
@@ -29,9 +31,13 @@ def enter_valid_operation_input():
 
 def enter_valid_number_input(string_word):
     try:
-        return int(input(string_word))
+        value = input(string_word)
+        if '.' in value:
+            return float(value)
+        else:
+            return int(value)
     except ValueError:
-        print('Invalid number')
+        print('Invalid number. Please try again.')
         return enter_valid_number_input(string_word)
 
 
@@ -47,4 +53,10 @@ def perform_operation(operation, number_1, number_2):
             division(number_1, number_2)
         except ZeroDivisionError:
             print("Division by zero")
-
+    elif operation == '**':
+        power(number_1, number_2)
+    elif operation == '%':
+        try:
+            modulus(number_1, number_2)
+        except ZeroDivisionError:
+            print("Modulo by zero")
