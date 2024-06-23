@@ -1,67 +1,55 @@
 import math
 
 
-def addition(number_1, number_2):
-    return number_1 + number_2
+def addition(x, y):
+    return x + y
 
 
-def subtraction(number_1, number_2):
-    return number_1 - number_2
+def subtraction(x, y):
+    return x - y
 
 
-def multiplication(number_1, number_2):
-    return number_1 * number_2
+def multiplication(x, y):
+    return x * y
 
 
-def division(number_1, number_2):
-    try:
-        return number_1 / number_2
-    except ZeroDivisionError:
-        return "Error: denominator is zero"
+def division(x, y):
+    if y == 0:
+        raise ZeroDivisionError("Division by zero is undefined")
+    return x / y
 
 
-def power(number_1, number_2):
-    return number_1 ** number_2
+def power(x, y):
+    return x ** y
 
 
-def modulus(number_1, number_2):
-    try:
-        return number_1 % number_2
-    except ZeroDivisionError:
-        return "Error: denominator is zero"
+def modulus(x, y):
+    if y == 0:
+        raise ZeroDivisionError("Division by zero is undefined")
+    return x % y
 
 
-def absolute(number):
-    return abs(number)
+def absolute(x):
+    return abs(x)
 
 
-def inverse(number):
-    try:
-        return 1 / number
-    except ZeroDivisionError:
-        return "Error: denominator is zero"
+def inverse(x):
+    if y == 0:
+        raise ZeroDivisionError("Inverse of zero is undefined")
+    return 1 / x
 
 
-def factorial(number):
-    if number == 0:
-        return 1
-    elif number == 1:
-        return 1
-    elif number > 0 and number % 1 == 0:
-        Factorial = 1
-        while number > 1:
-            Factorial *= number
-            number -= 1
-        return Factorial
-    else:
-        return "Error: Negative integer or float value is passed"
+def factorial(x):
+    if x < 0:
+        raise ValueError("Factorial of a negative number is undefined")
+    return math.factorial(x)
 
 
-def exponential(number):
-    return math.exp(number)
+def exponential(x):
+    return math.exp(x)
 
-def log_base_e(number):
-    try:
-        return math.log(number)
-    except ValueError as e:
-        return f"Error: {e}"
+
+def natural_log(x):
+    if x <= 0:
+        raise ValueError("Natural logarithm of non-positive number is undefined")
+    return math.log(x)
